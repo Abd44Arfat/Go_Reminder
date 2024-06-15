@@ -17,6 +17,7 @@ class AppTextFormField extends StatelessWidget {
   final Color? backgroundColor;
   final TextEditingController? controller;
   final Function(String?) validator;
+  
 
   const AppTextFormField({
     super.key,
@@ -36,6 +37,8 @@ class AppTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      
+      textAlign: TextAlign.end,
       controller: controller,
       decoration: InputDecoration(
         isDense: true,
@@ -71,8 +74,10 @@ class AppTextFormField extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(16.0),
         ),
-        // hintStyle: hintStyle ?? TextStyles.font14LightGrayRegular,
+        hintStyle: hintStyle ?? TextStyles.font12GreyRegular,
         hintText: hintText,
+             
+
         suffixIcon: suffixIcon,
         fillColor: backgroundColor ?? ColorsManager.moreLightGray,
         filled: true,
