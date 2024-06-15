@@ -18,6 +18,12 @@ class TextStyles {
     color: Colors.black,
     fontFamily: 'Cairo'
   );
+    static TextStyle font22BlackExtraBold = TextStyle(
+    fontSize: 22.sp,
+    fontWeight: FontWeightHelper.extraBold,
+    color: Colors.black,
+    fontFamily: 'Cairo'
+  );
   static TextStyle font15GreenBold = TextStyle(
     fontSize: 15.sp,
     fontWeight: FontWeightHelper.bold,
@@ -30,6 +36,13 @@ class TextStyles {
     fontSize: 15.sp,
     fontWeight: FontWeightHelper.bold,
     color: ColorsManager.gray,
+        fontFamily: 'Cairo'
+
+  );
+   static TextStyle font15WhiteBold = TextStyle(
+    fontSize: 15.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: Colors.white,
         fontFamily: 'Cairo'
 
   );
