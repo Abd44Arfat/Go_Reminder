@@ -1,14 +1,15 @@
-import 'package:doctor/core/routing/app_router.dart';
-import 'package:doctor/core/theming/colors.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:reminder/core/routing/app_router.dart';
+import 'package:reminder/core/theming/colors.dart';
 
 import 'core/routing/routes.dart';
 
-class DocApp extends StatelessWidget {
+class ReminderApp extends StatelessWidget {
   final AppRouter appRouter;
-  const DocApp({super.key, required this.appRouter});
+  const ReminderApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +20,9 @@ class DocApp extends StatelessWidget {
       child: MaterialApp(
         
         debugShowCheckedModeBanner: false,
-        title: 'Doc App',
+        title: 'Reminder App ',
         theme: ThemeData(
-          primaryColor: ColorsManager.mainBlue,
+          primaryColor: ColorsManager.mainGreen,
           scaffoldBackgroundColor: Colors.white,
         ),
          

@@ -1,8 +1,9 @@
-import 'package:doctor/core/theming/colors.dart';
-import 'package:doctor/core/theming/styles.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:reminder/core/theming/colors.dart';
+import 'package:reminder/core/theming/styles.dart';
 
 class AppTextFormField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
@@ -43,7 +44,7 @@ class AppTextFormField extends StatelessWidget {
         focusedBorder: focusedBorder ??
             OutlineInputBorder(
               borderSide: const BorderSide(
-                color: ColorsManager.mainBlue,
+                color: ColorsManager.mainGreen,
                 width: 1.3,
               ),
               borderRadius: BorderRadius.circular(16.0),
@@ -70,14 +71,14 @@ class AppTextFormField extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(16.0),
         ),
-        hintStyle: hintStyle ?? TextStyles.font14LightGrayRegular,
+        // hintStyle: hintStyle ?? TextStyles.font14LightGrayRegular,
         hintText: hintText,
         suffixIcon: suffixIcon,
         fillColor: backgroundColor ?? ColorsManager.moreLightGray,
         filled: true,
       ),
       obscureText: isObscureText ?? false,
-      style: TextStyles.font14DarkBlueMedium,
+      // style: TextStyles.font14DarkBlueMedium,
       validator: (value) {
         return validator(value);
       },
