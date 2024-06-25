@@ -9,6 +9,7 @@ class DropdownField extends StatefulWidget {
   final String? initialValue;
   final Function(String?)? onChanged;
   final Function(String?)? onSaved;
+  final String? Function(String?)? validator ;
 
   const DropdownField({
     super.key,
@@ -16,7 +17,7 @@ class DropdownField extends StatefulWidget {
     this.hint,
     this.initialValue,
     this.onChanged,
-    this.onSaved,
+    this.onSaved, this.validator,
   });
 
   @override
@@ -37,6 +38,12 @@ class _DropdownFieldState extends State<DropdownField> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: DropdownButtonFormField2<String>(
+         validator: (value) {
+          if (widget.validator != null) {
+            return widget.validator!(value);
+          }
+          return null;
+        },
         isExpanded: true,
         decoration: InputDecoration(
       focusedBorder: OutlineInputBorder(

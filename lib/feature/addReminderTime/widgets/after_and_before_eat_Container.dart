@@ -13,13 +13,14 @@ class AfterAndBeforeEatContainer extends StatelessWidget {
   final String title;
   final IconData? icon;
   final bool isSelected;
+  
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 500),
       height: 100.h,
-      width: 90.w,
+      width: 150.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(

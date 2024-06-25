@@ -3,10 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:reminder/core/helpers/spacing.dart';
 import 'package:reminder/core/theming/styles.dart';
+import 'package:reminder/feature/home/data/models/medicine_model.dart';
 
 class ListViewItem extends StatelessWidget {
-  const ListViewItem({super.key});
-
+  const ListViewItem({super.key, required this.medicine});
+final MedicineModel medicine;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,13 +25,13 @@ class ListViewItem extends StatelessWidget {
                                            Column(
                                             crossAxisAlignment: CrossAxisAlignment.end,
                                              children: [
- Text('أوبلكس',style: TextStyles.font16BlackBold,textAlign: TextAlign.end,),
- Text('قرص واحد بعد الاكل',style: TextStyles.font13GreySemiBold,textAlign: TextAlign.end,),
+ Text(medicine.title,style: TextStyles.font16BlackBold,textAlign: TextAlign.end,),
+ Text('قرص ${medicine.amount} بعد الاكل',style: TextStyles.font13GreySemiBold,textAlign: TextAlign.end,),
 
                                              ],
                                            ),
  horizontalSpace(20),
-                  Image.asset('assets/images/omega.png'),
+                  Image.asset(medicine.image),
                  
 
                 ],

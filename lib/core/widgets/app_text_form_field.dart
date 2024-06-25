@@ -17,7 +17,7 @@ class AppTextFormField extends StatelessWidget {
   final Color? backgroundColor;
   final TextEditingController? controller;
   final Function(String?) validator;
-  
+  final void Function(String?)? onSaved;
 
   const AppTextFormField({
     super.key,
@@ -31,13 +31,13 @@ class AppTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.backgroundColor,
     this.controller,
-    required this.validator,
+    required this.validator,  this.onSaved,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
+      onSaved: onSaved,
       textAlign: TextAlign.end,
       controller: controller,
       decoration: InputDecoration(
@@ -85,7 +85,7 @@ class AppTextFormField extends StatelessWidget {
       obscureText: isObscureText ?? false,
       // style: TextStyles.font14DarkBlueMedium,
       validator: (value) {
-        return validator(value);
+     if(value?.isEmpty??true)  {return 'Field is required';}    
       },
     );
   }

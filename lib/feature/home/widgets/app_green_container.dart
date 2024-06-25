@@ -39,36 +39,34 @@ fit: BoxFit.cover
 
  )
  ),
- child:Expanded(
-   child: Column(
-   crossAxisAlignment: CrossAxisAlignment.center,
-   children: [
-   Column(
-       crossAxisAlignment: CrossAxisAlignment.center,
-
-     children: [
-       Text('أوبلكس',style: TextStyles.font16BlackBold,textAlign: TextAlign.end,),
-       verticalSpace(5) ,
-      Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+ child:Column(
+ crossAxisAlignment: CrossAxisAlignment.center,
+ children: [
+ Column(
+     crossAxisAlignment: CrossAxisAlignment.center,
  
-            horizontalSpace(10),
-            Text(
-              'بعد 3 ساعات',
-              style: TextStyles.font15GreenBold,
-              textAlign: TextAlign.end,
-            ),
-                        horizontalSpace(5),
-
-                Icon(Icons.alarm, color: Colors.green, size: 20),
-                       SizedBox(width: 30.w,),
-          ],
-        )]),
-   
-   
-   ]),
- )
+   children: [
+     Text('أوبلكس',style: TextStyles.font16BlackBold,textAlign: TextAlign.end,),
+     verticalSpace(5) ,
+    Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+  
+          horizontalSpace(10),
+          Text(
+            'بعد 3 ساعات',
+            style: TextStyles.font15GreenBold,
+            textAlign: TextAlign.end,
+          ),
+                      horizontalSpace(5),
+ 
+              Icon(Icons.alarm, color: Colors.green, size: 20),
+                     SizedBox(width: 30.w,),
+        ],
+      )]),
+ 
+ 
+ ])
  ),
 
 Positioned(

@@ -9,7 +9,12 @@ import 'package:reminder/core/widgets/titles.dart';
 import 'package:reminder/feature/addReminderTime/widgets/after_and_before_eat_Container.dart';
 
 class AmountAndDuration extends StatefulWidget {
-  const AmountAndDuration({super.key});
+  const AmountAndDuration({super.key,  this.onSaved1, this.onSaved2,  });
+
+
+  final FormFieldSetter<String>? onSaved1;
+    final FormFieldSetter<String>? onSaved2;
+
 
   @override
   State<AmountAndDuration> createState() => _AmountAndDurationState();
@@ -24,6 +29,7 @@ class _AmountAndDurationState extends State<AmountAndDuration> {
     String? selectedContainer = 'قبل الاكل';
 
   @override
+
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -36,85 +42,76 @@ class _AmountAndDurationState extends State<AmountAndDuration> {
         ),
         const SizedBox(height: 16),
        // in the AmountAndDuration widget
-DropdownField(
-  items: amountItems,
-  hint: 'الكميه',
-  initialValue: selectedAmount,
-  onChanged: (value) {
-    setState(() {
-      selectedAmount = value;
-    });
-  },
-  onSaved: (value) {
-    selectedAmount = value;
-  },
-),
-const SizedBox(height: 16),
-DropdownField(
-  
-  items: durationItems,
-  hint: 'المده',
-  
-  initialValue: selectedDuration,
-  onChanged: (value) {
-    setState(() {
-      selectedDuration = value;
-    });
-  },
-  onSaved: (value) {
-    selectedDuration = value;
-  },
-),
-        const SizedBox(height: 16),
-verticalSpace(15),
-Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          GestureDetector(
-            onTap: () {
+ DropdownField(
+            items: amountItems,
+            hint: 'الكميه',
+            initialValue: selectedAmount,
+            onChanged: (value) {
               setState(() {
-                selectedContainer = 'مخصص';
+                selectedAmount = value;
               });
             },
-            child: GestureDetector(
-           onTap: () {
-  setState(() {
-    selectedContainer = 'مخصص';
-  });
-  context.pushNamed(Routes.homeScreen);
-},
-              child: AfterAndBeforeEatContainer(
-                title: 'مخصص',
-                icon: Iconsax.add_copy,
-                isSelected: selectedContainer == 'مخصص',
+            onSaved:widget. onSaved1,
+ 
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please select an amount';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 16),
+          DropdownField(
+            items: durationItems,
+            hint: 'المده',
+            initialValue: selectedDuration,
+            onChanged: (value) {
+              setState(() {
+                selectedDuration = value;
+              });
+            },
+            onSaved: widget.onSaved2,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please select a duration';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 16),
+          verticalSpace(15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+             
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedContainer = 'بعد الأكل';
+                  });
+                },
+                child: AfterAndBeforeEatContainer(
+                  title: 'بعد\n الأكل',
+                  isSelected: selectedContainer == 'بعد الأكل',
+                ),
               ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                selectedContainer = 'بعد الأكل';
-              });
-            },
-            child: AfterAndBeforeEatContainer(
-              title: 'بعد\n الأكل',
-              isSelected: selectedContainer == 'بعد الأكل',
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                selectedContainer = 'قبل الأكل';
-              });
-            },
-            child: AfterAndBeforeEatContainer(
-              title: 'قبل\n الأكل',
-              isSelected: selectedContainer == 'قبل الأكل',
-            ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedContainer = 'قبل الأكل';
+                    
+                  });
+                },
+                child: AfterAndBeforeEatContainer(
+                  title: 'قبل\n الأكل',
+                  isSelected: selectedContainer == 'قبل الأكل',
+
+                ),
+              ),
+            ],
           ),
         ],
-      ),
-    ],
-  );
-}
+      );
+    
+  }
 }

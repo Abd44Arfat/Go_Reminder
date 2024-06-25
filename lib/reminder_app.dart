@@ -1,9 +1,10 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:reminder/core/routing/app_router.dart';
 import 'package:reminder/core/theming/colors.dart';
+import 'package:reminder/feature/home/logic/medicine_cubit/medicine_cubit.dart';
 
 import 'core/routing/routes.dart';
 
@@ -13,24 +14,21 @@ class ReminderApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      minTextAdapt: true,
-      child: MaterialApp(
-        
-        debugShowCheckedModeBanner: false,
-        title: 'Reminder App ',
-        theme: ThemeData(
-          primaryColor: ColorsManager.mainGreen,
-          scaffoldBackgroundColor: Colors.white,
-        ),
-         
-
-
-        initialRoute: Routes.homeScreen,
-        onGenerateRoute: appRouter.generateRoute,
-      )
-    );
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        child: BlocProvider(
+          create: (context) => MedicineCubit()..fetchAllMedicine(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Reminder App ',
+            theme: ThemeData(
+              primaryColor: ColorsManager.mainGreen,
+              scaffoldBackgroundColor: Colors.white,
+            ),
+            initialRoute: Routes.homeScreen,
+            onGenerateRoute: appRouter.generateRoute,
+          ),
+        ));
   }
 }
