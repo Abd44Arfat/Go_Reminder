@@ -14,7 +14,6 @@ class MedicineTimeList extends StatefulWidget {
 }
 
 class _MedicineTimeListState extends State<MedicineTimeList> {
-  List<int> items = List<int>.generate(6, (int index) => index);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ List<MedicineModel>medicine=BlocProvider.of<MedicineCubit>(context).medicines??[
           itemCount:medicine.length ,
           itemBuilder: (BuildContext context, int index) {
             return Dismissible(
-                key: ValueKey<int>(items[index]),
+                key: ValueKey<int>(medicine.length),
                 background: Align(
                   alignment: Alignment.centerRight,
                   child: Container(

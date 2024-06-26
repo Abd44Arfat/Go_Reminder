@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reminder/core/helpers/spacing.dart';
@@ -38,7 +37,7 @@ class _AddMedicineTimeFormState extends State<AddMedicineTimeForm> {
   Widget build(BuildContext context) {
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
-    String?  title, date, amount;
+    String? title, date, amount, image, beforeAndAfter;
 
     return Form(
       key: formKey,
@@ -50,51 +49,60 @@ class _AddMedicineTimeFormState extends State<AddMedicineTimeForm> {
           verticalSpace(30),
           Column(
             children: [
-              MedicineSpecialityListView(imageItems: imageItems),
-              MedicineName(onSaved: (value){title =value; },),
+              MedicineSpecialityListView(
+                imageItems: imageItems,
+                onImageSelected: (selectedImagePath) {
+                  image = selectedImagePath;
+                },
+              ),
+              MedicineName(
+                onSaved: (value) {
+                  title = value;
+                },
+              ),
               verticalSpace(20),
               AmountAndDuration(
-onSaved1: (value){
-amount =value;
-
-},
-
-onSaved2: (value){
-
-date=value;
-
-},
-
-
-
+                onSaved1: (value) {
+                  amount = value;
+                },
+                onSaved2: (value) {
+                  date = value;
+                },
+                onContainerAfterSelected: (String value) {
+                  beforeAndAfter = value;
+                },
+                onContainerBeforeSelected: (String value) {
+                  beforeAndAfter = value;
+                },
               ),
               // NotificationSection(),
               verticalSpace(20),
               AppTextButton(
-
-
-
                 buttonText: 'اضافه',
                 textStyle: TextStyles.font15WhiteBold,
                 onPressed: () {
-
-
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
                     print("#######################");
                     print(date);
                     print(amount);
                     print(title);
+                    print(image);
+                    print(beforeAndAfter);
+                    print("#######################");
 
-var medicineModel=MedicineModel(image:"assets/images/4.png" , amount: amount!, date: date!, title: title!);
-                    BlocProvider.of<AddMedicineCubit>(context).addMedicine(medicineModel);
+                    var medicineModel = MedicineModel(
+                        image: image!,
+                        amount: amount!,
+                        date: date!,
+                        title: title!);
+                    BlocProvider.of<AddMedicineCubit>(context)
+                        .addMedicine(medicineModel);
                     BlocProvider.of<MedicineCubit>(context).fetchAllMedicine();
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
                   }
-
-
                 },
               ),
             ],

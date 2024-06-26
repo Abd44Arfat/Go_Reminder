@@ -9,11 +9,14 @@ import 'package:reminder/core/widgets/titles.dart';
 import 'package:reminder/feature/addReminderTime/widgets/after_and_before_eat_Container.dart';
 
 class AmountAndDuration extends StatefulWidget {
-  const AmountAndDuration({super.key,  this.onSaved1, this.onSaved2,  });
+  const AmountAndDuration({super.key,  this.onSaved1, this.onSaved2, required this.onContainerAfterSelected, required this.onContainerBeforeSelected,  });
 
 
   final FormFieldSetter<String>? onSaved1;
     final FormFieldSetter<String>? onSaved2;
+  final ValueChanged<String> onContainerAfterSelected;
+    final ValueChanged<String> onContainerBeforeSelected;
+
 
 
   @override
@@ -88,7 +91,7 @@ class _AmountAndDurationState extends State<AmountAndDuration> {
                 onTap: () {
                   setState(() {
                     selectedContainer = 'بعد الأكل';
-                  });
+  widget.onContainerAfterSelected("بعد الكل");                  });
                 },
                 child: AfterAndBeforeEatContainer(
                   title: 'بعد\n الأكل',
@@ -99,7 +102,7 @@ class _AmountAndDurationState extends State<AmountAndDuration> {
                 onTap: () {
                   setState(() {
                     selectedContainer = 'قبل الأكل';
-                    
+                      widget.onContainerAfterSelected("قبل الاكل");      
                   });
                 },
                 child: AfterAndBeforeEatContainer(
