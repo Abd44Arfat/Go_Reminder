@@ -26,7 +26,7 @@ final MedicineModel medicine;
                                             crossAxisAlignment: CrossAxisAlignment.end,
                                              children: [
  Text(medicine.title,style: TextStyles.font16BlackBold,textAlign: TextAlign.end,),
- Text('قرص ${medicine.amount} بعد الاكل',style: TextStyles.font13GreySemiBold,textAlign: TextAlign.end,),
+ Text('قرص ${medicine.amount}  ${medicine.befireAndAfter}',style: TextStyles.font13GreySemiBold,textAlign: TextAlign.end,),
 
                                              ],
                                            ),

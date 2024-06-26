@@ -1,4 +1,5 @@
 
+
 import 'package:hive/hive.dart';
 
 
@@ -18,11 +19,14 @@ final String amount;
 final String image;
 @HiveField(3)
 final String date;
+@HiveField(4)
+final String befireAndAfter;
 
 
 
 
 
-  MedicineModel({ required this.image, required this.amount, required this.date, required this.title, });
+
+  MedicineModel({ required this.image, required this.amount, required this.date, required this.title,required this.befireAndAfter,  });
 
 }

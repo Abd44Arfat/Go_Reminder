@@ -95,7 +95,7 @@ class _AddMedicineTimeFormState extends State<AddMedicineTimeForm> {
                         image: image!,
                         amount: amount!,
                         date: date!,
-                        title: title!);
+                        title: title!, befireAndAfter: beforeAndAfter!);
                     BlocProvider.of<AddMedicineCubit>(context)
                         .addMedicine(medicineModel);
                     BlocProvider.of<MedicineCubit>(context).fetchAllMedicine();
