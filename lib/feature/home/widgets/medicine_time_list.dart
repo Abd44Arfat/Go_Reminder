@@ -19,41 +19,47 @@ class _MedicineTimeListState extends State<MedicineTimeList> {
   Widget build(BuildContext context) {
     return BlocBuilder<MedicineCubit, MedicineState>(
       builder: (context, state) {
+        List<MedicineModel> medicine = BlocProvider.of<MedicineCubit>(context).medicines ?? [];
 
-List<MedicineModel>medicine=BlocProvider.of<MedicineCubit>(context).medicines??[];
+        if (medicine.isEmpty) {
+          return Center(
+            child: Text(
+              'No medicines available.',
+              style: TextStyle(fontSize: 18.sp),
+            ),
+          );
+        }
 
         return ListView.builder(
-          itemCount:medicine.length ,
+          itemCount: medicine.length,
           itemBuilder: (BuildContext context, int index) {
             return Dismissible(
-                key: ValueKey<int>(medicine.length),
-                background: Align(
-                  alignment: Alignment.centerRight,
-                  child: Container(
-                    height: 78.h,
-                    width: 53.w,
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.check,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
+              key: ValueKey<int>(medicine[index].key as int),
+              background: Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  height: 78.h,
+                  width: 53.w,
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.check,
+                      color: Colors.white,
+                      size: 20.sp,
                     ),
                   ),
                 ),
-                onDismissed: (DismissDirection direction) {
-                  // Remove the item from the list
-               
-
-                    BlocProvider.of<MedicineCubit>(context).deleteMedicine(index);
-                    BlocProvider.of<MedicineCubit>(context).fetchAllMedicine();
-                
-                },
-                child: ListViewItem(medicine: medicine[index],));
+              ),
+              onDismissed: (DismissDirection direction) {
+                // Remove the item from the list
+                BlocProvider.of<MedicineCubit>(context).deleteMedicine(index);
+                BlocProvider.of<MedicineCubit>(context).fetchAllMedicine();
+              },
+              child: ListViewItem(medicine: medicine[index]),
+            );
           },
         );
       },

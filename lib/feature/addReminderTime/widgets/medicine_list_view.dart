@@ -21,7 +21,7 @@ class MedicineSpecialityListView extends StatefulWidget {
 }
 
 class _MedicineSpecialityListViewState extends State<MedicineSpecialityListView> {
-  var selectedSpecializationIndex = 0;
+  var selectedSpecializationIndex = -1;
 
   @override
   Widget build(BuildContext context) {

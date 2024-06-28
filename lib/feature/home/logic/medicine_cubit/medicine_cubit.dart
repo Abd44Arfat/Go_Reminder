@@ -8,26 +8,29 @@ part 'medicine_state.dart';
 
 class MedicineCubit extends Cubit<MedicineState> {
   MedicineCubit() : super(MedicineInitial());
-List<MedicineModel>?medicines;
-fetchAllMedicine(){
+  List<MedicineModel>? medicines;
 
-
-
-var medicineBox = Hive.box<MedicineModel>(kMedicineBox);
-medicines= medicineBox.values.toList();
-
-emit(MedicineSuccess());
-
-
-
-
-
+  void fetchAllMedicine() {
+    var medicineBox = Hive.box<MedicineModel>(kMedicineBox);
+    medicines = medicineBox.values.toList();
+    emit(MedicineSuccess());
   }
 
   void deleteMedicine(int index) async {
-  final medicineToDelete = medicines![index];
+    final medicineToDelete = medicines![index];
+    final medicineBox = Hive.box<MedicineModel>(kMedicineBox);
+    await medicineBox.delete(medicineToDelete.key);
+  }
 
-  // Delete from Hive
-  final medicineBox = Hive.box<MedicineModel>(kMedicineBox);
-  await medicineBox.delete(medicineToDelete.key);
-}}
+  DateTime get valueOfMedicine {
+  if (medicines != null && medicines!.isNotEmpty) {
+    // Sort the medicines by notification time in ascending order
+    medicines!.sort((a, b) => a.notificationTime.compareTo(b.notificationTime));
+
+    // Return the medicine with the earliest notification time
+    return medicines!.first.notificationTime;
+  } else {
+    return DateTime.now();
+  }
+}
+}

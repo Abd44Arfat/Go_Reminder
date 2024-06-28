@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:reminder/core/helpers/spacing.dart';
 import 'package:reminder/core/theming/styles.dart';
 
 class TimingHeader extends StatefulWidget {
@@ -28,7 +29,8 @@ children: [
        Column(
         crossAxisAlignment: CrossAxisAlignment.end,
          children: [
-           Text('مرحبا عبدالرحمن',style: TextStyles.font15Greyregular,textAlign: TextAlign.end,),
+           Text('مرحبا بك',style: TextStyles.font15GreyBold,textAlign: TextAlign.end,),verticalSpace(10),
+           
            
            Text( arabicDayOfWeek,style: TextStyles.font20BlackBold,textAlign: TextAlign.end,),
          ],

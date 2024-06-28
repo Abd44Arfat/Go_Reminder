@@ -1,6 +1,7 @@
 
 
 import 'package:hive/hive.dart';
+import 'package:uuid/uuid.dart';
 
 
 part 'medicine_model.g.dart' ;
@@ -18,15 +19,28 @@ final String amount;
 
 final String image;
 @HiveField(3)
-final String date;
-@HiveField(4)
+
 final String befireAndAfter;
+@HiveField(5)
+  final DateTime notificationTime;
+  @HiveField(6)
+
+int id;
 
 
 
 
 
 
-  MedicineModel({ required this.image, required this.amount, required this.date, required this.title,required this.befireAndAfter,  });
+ MedicineModel({
+    required this.image,
+    required this.amount,
+  
+    required this.title,
+    required this.befireAndAfter,
+    required this.notificationTime,
+   required this.id
+  }) ;
+
 
 }

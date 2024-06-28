@@ -19,16 +19,17 @@ class MedicineModelAdapter extends TypeAdapter<MedicineModel> {
     return MedicineModel(
       image: fields[2] as String,
       amount: fields[1] as String,
-      date: fields[3] as String,
       title: fields[0] as String,
-      befireAndAfter: fields[4] as String,
+      befireAndAfter: fields[3] as String,
+      notificationTime: fields[5] as DateTime,
+      id: fields[6] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, MedicineModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.title)
       ..writeByte(1)
@@ -36,9 +37,11 @@ class MedicineModelAdapter extends TypeAdapter<MedicineModel> {
       ..writeByte(2)
       ..write(obj.image)
       ..writeByte(3)
-      ..write(obj.date)
-      ..writeByte(4)
-      ..write(obj.befireAndAfter);
+      ..write(obj.befireAndAfter)
+      ..writeByte(5)
+      ..write(obj.notificationTime)
+      ..writeByte(6)
+      ..write(obj.id);
   }
 
   @override

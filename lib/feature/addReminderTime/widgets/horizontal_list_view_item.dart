@@ -53,7 +53,7 @@ class HorizontalMedicineList extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border.all(
                 color:  ColorsManager.lightGray,
-                width: 2.0,
+                width: .5,
               ),
             ),
             child: CircleAvatar(

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:reminder/core/helpers/extensions.dart';
 import 'package:reminder/core/helpers/spacing.dart';
+import 'package:reminder/core/theming/colors.dart';
 import 'package:reminder/core/theming/styles.dart';
 import 'package:reminder/core/widgets/app_text_button.dart';
 import 'package:reminder/feature/addReminderTime/logic/add_medicine_cubit/add_medicine_cubit_cubit.dart';
@@ -19,11 +20,11 @@ class AddReminderTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+
       body: SafeArea(
         child: Container(
             width: double.infinity,
-            margin: const EdgeInsets.fromLTRB(25, 16, 25, 28),
+            margin: const EdgeInsets.fromLTRB(25, 16, 25, 0),
             child: BlocConsumer<AddMedicineCubit, AddMedicineState>(
               listener: (context, state) {
         if (state is AddMedicineCubitFailure) {

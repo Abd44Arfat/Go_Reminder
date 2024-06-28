@@ -3,6 +3,7 @@ import 'package:reminder/core/helpers/extensions.dart';
 import 'package:reminder/core/helpers/spacing.dart';
 import 'package:reminder/core/routing/routes.dart';
 import 'package:reminder/core/theming/colors.dart';
+import 'package:reminder/core/theming/styles.dart';
 import 'package:reminder/core/widgets/titles.dart';
 import 'package:reminder/feature/home/widgets/app_green_container.dart';
 import 'package:reminder/feature/home/widgets/medicine_time_list.dart';
@@ -53,21 +54,11 @@ floatingActionButton: FloatingActionButton(
 TimingHeader(),
 
     verticalSpace(30),
-                       TitlesTextHeader(title: 'جرعتك القادمه',),
 
          AppGreenContainer(),
 
          verticalSpace(15),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                         TitlesTextHeader(title: 'مساءًا' ,),
-                                         horizontalSpace(5),
-                                    TitlesTextHeader(title: '4:00' ,),
-
-
-                                  ],
-                                ),
+                             Text(' اليوم ',style: TextStyles.font15GreyBold,),
 
 Expanded(child: MedicineTimeList())
 

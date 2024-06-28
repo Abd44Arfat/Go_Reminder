@@ -9,11 +9,11 @@ import 'package:reminder/core/widgets/titles.dart';
 import 'package:reminder/feature/addReminderTime/widgets/after_and_before_eat_Container.dart';
 
 class AmountAndDuration extends StatefulWidget {
-  const AmountAndDuration({super.key,  this.onSaved1, this.onSaved2, required this.onContainerAfterSelected, required this.onContainerBeforeSelected,  });
+  const AmountAndDuration({super.key,  this.onSaved1, required this.onContainerAfterSelected, required this.onContainerBeforeSelected,  });
 
 
   final FormFieldSetter<String>? onSaved1;
-    final FormFieldSetter<String>? onSaved2;
+ 
   final ValueChanged<String> onContainerAfterSelected;
     final ValueChanged<String> onContainerBeforeSelected;
 
@@ -37,7 +37,7 @@ class _AmountAndDurationState extends State<AmountAndDuration> {
     return Column(
       children: [
         TitlesTextHeader(
-          title: 'الكميه والمده',
+          title: 'الكميه و الوقت',
           icon: Icon(
             Iconsax.brifecase_timer_copy,
             color: Colors.grey,
@@ -47,7 +47,7 @@ class _AmountAndDurationState extends State<AmountAndDuration> {
        // in the AmountAndDuration widget
  DropdownField(
             items: amountItems,
-            hint: 'الكميه',
+            hint: ' الكميه',
             initialValue: selectedAmount,
             onChanged: (value) {
               setState(() {
@@ -63,24 +63,8 @@ class _AmountAndDurationState extends State<AmountAndDuration> {
               return null;
             },
           ),
-          const SizedBox(height: 16),
-          DropdownField(
-            items: durationItems,
-            hint: 'المده',
-            initialValue: selectedDuration,
-            onChanged: (value) {
-              setState(() {
-                selectedDuration = value;
-              });
-            },
-            onSaved: widget.onSaved2,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please select a duration';
-              }
-              return null;
-            },
-          ),
+      
+    
           const SizedBox(height: 16),
           verticalSpace(15),
           Row(

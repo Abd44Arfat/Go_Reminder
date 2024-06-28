@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reminder/core/helpers/spacing.dart';
@@ -12,6 +14,7 @@ import 'package:reminder/feature/addReminderTime/widgets/medicine_name.dart';
 import 'package:reminder/feature/addReminderTime/widgets/notifications_section.dart';
 import 'package:reminder/feature/home/data/models/medicine_model.dart';
 import 'package:reminder/feature/home/logic/medicine_cubit/medicine_cubit.dart';
+import 'package:uuid/uuid.dart';
 
 final imageItems = [
   ImageItem(imagePath: 'assets/images/4.png'),
@@ -31,13 +34,16 @@ class AddMedicineTimeForm extends StatefulWidget {
 }
 
 class _AddMedicineTimeFormState extends State<AddMedicineTimeForm> {
+
   final GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+    
 
-    String? title, date, amount, image, beforeAndAfter;
+    String? title, amount, image, beforeAndAfter;
+    DateTime? notificationTime;
 
     return Form(
       key: formKey,
@@ -65,9 +71,6 @@ class _AddMedicineTimeFormState extends State<AddMedicineTimeForm> {
                 onSaved1: (value) {
                   amount = value;
                 },
-                onSaved2: (value) {
-                  date = value;
-                },
                 onContainerAfterSelected: (String value) {
                   beforeAndAfter = value;
                 },
@@ -75,7 +78,12 @@ class _AddMedicineTimeFormState extends State<AddMedicineTimeForm> {
                   beforeAndAfter = value;
                 },
               ),
-              // NotificationSection(),
+              verticalSpace(20),
+              NotificationSection(
+                onSaved: (value) {
+                  notificationTime = value;
+                },
+              ),
               verticalSpace(20),
               AppTextButton(
                 buttonText: 'اضافه',
@@ -84,18 +92,33 @@ class _AddMedicineTimeFormState extends State<AddMedicineTimeForm> {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
                     print("#######################");
-                    print(date);
                     print(amount);
                     print(title);
                     print(image);
                     print(beforeAndAfter);
+                    print(notificationTime);
+
                     print("#######################");
+
+                    var uuid = Uuid();
+                    String uuidStr =
+                        uuid.v4(); // Generate a new UUID as a String
+
+// Extract the first 4 characters of the UUID and convert to an integer
+                    int uuidInt = int.parse(uuidStr.substring(0, 4), radix: 16);
+
+
 
                     var medicineModel = MedicineModel(
                         image: image!,
                         amount: amount!,
-                        date: date!,
-                        title: title!, befireAndAfter: beforeAndAfter!);
+                        title: title!,
+                        befireAndAfter: beforeAndAfter!,
+                        notificationTime: notificationTime!,
+                        id: uuidInt);
+                    print('**********************');
+                    print(uuidInt);
+
                     BlocProvider.of<AddMedicineCubit>(context)
                         .addMedicine(medicineModel);
                     BlocProvider.of<MedicineCubit>(context).fetchAllMedicine();

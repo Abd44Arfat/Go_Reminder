@@ -22,6 +22,13 @@ final MedicineModel medicine;
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+
+            
+                 Text(medicine.notificationTime.hour.toString()),
+                   Text(':'),
+                                  Text(medicine.notificationTime.minute.toString()),
+
+                        Spacer(),
                                            Column(
                                             crossAxisAlignment: CrossAxisAlignment.end,
                                              children: [
@@ -32,7 +39,8 @@ final MedicineModel medicine;
                                            ),
  horizontalSpace(20),
                   Image.asset(medicine.image),
-                 
+
+                
 
                 ],
               ),
